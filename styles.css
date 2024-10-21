@@ -1,0 +1,47 @@
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #4e1a75; /* Morado oscuro */
+    margin: 0;
+    padding: 20px;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #6c298e; /* Morado intermedio */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #f958ee; /* Amarillo vibrante */
+}
+
+input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #4e1a75; /* Fondo morado oscuro */
+    color: #ffffff;
+    border-radius: 5px;
+    border: 2px solid #f958ee; /* Borde rosa */
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    background: #f958ee; /* Botón rosa */
+    color: #4e1a75; /* Texto morado */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: #e44bd6; /* Rosa más oscuro en hover */
+}
+
