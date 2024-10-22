@@ -1,13 +1,68 @@
 function convertirInfijaAPolaca() {
     const expresion = document.getElementById('infija').value;
-    const resultado = infijaAPolaca(expresion);
-    document.getElementById('resultadoInfija').innerText = resultado;
+
+
+    if (!validarMinimoTerminos(expresion)) {
+        document.getElementById('resultadoInfija').innerText = "La expresión debe contener al menos 3 términos.";
+        return;
+    }
+
+    if (!validarExpresion(expresion)) {
+        document.getElementById('resultadoInfija').innerText = "Expresión inválida. Solo se permiten números y operadores (+, -, *, /).";
+        return;
+    }
+
+
+    const polacaInversa = infijaAPolaca(expresion);
+    document.getElementById('resultadoInfija').innerText = `Polaca: ${polacaInversa}`;
+
+
+    const infijaOrdenada = polacaAInfija(polacaInversa);
+    document.getElementById('resultadoInfijaResuelto').innerText = ``;
+
+    const solucion = resolverExpresionInfija(infijaOrdenada);
+    document.getElementById('resultadoInfijaResuelto').innerText += `\nResultado: ${solucion}`;
 }
 
 function convertirPolacaAInfija() {
     const expresion = document.getElementById('polaca').value;
-    const resultado = polacaAInfija(expresion);
-    document.getElementById('resultadoPolaca').innerText = resultado;
+
+
+    if (!validarMinimoTerminos(expresion)) {
+        document.getElementById('resultadoPolaca').innerText = "La expresión debe contener al menos 3 términos.";
+        return;
+    }
+
+
+    if (!validarInicioConOperador(expresion)) {
+        document.getElementById('resultadoPolaca').innerText = "La expresión en notación polaca debe comenzar con un operador.";
+        return;
+    }
+
+
+    if (!validarExpresion(expresion)) {
+        document.getElementById('resultadoPolaca').innerText = "Expresión inválida. Solo se permiten números y operadores (+, -, *, /).";
+        return;
+    }
+
+    
+    const infija = polacaAInfija(expresion);
+    document.getElementById('resultadoPolaca').innerText = `Normal: ${infija}`;
+
+
+    const solucion = resolverExpresionInfija(infija);
+    document.getElementById('resultadoPolacaResuelto').innerText = `Resultado: ${solucion}`;
+}
+
+function validarMinimoTerminos(expresion) {
+    const tokens = expresion.trim().split(/\s+/);
+    return tokens.length >= 3;
+}
+
+function validarInicioConOperador(expresion) {
+    const operadores = ['+', '-', '*', '/'];
+    const primerToken = expresion.trim().split(/\s+/)[0];
+    return operadores.includes(primerToken);
 }
 
 function infijaAPolaca(expresion) {
@@ -55,4 +110,22 @@ function polacaAInfija(expresion) {
     });
 
     return pila[0];
+}
+
+function resolverExpresionInfija(expresion) {
+    return Function(`'use strict'; return (${expresion})`)();
+}
+
+function validarExpresion(expresion) {
+    const regex = /^[0-9+\-*/\s()]+$/;
+    return regex.test(expresion);
+}
+
+function limpiarFormulario() {
+    document.getElementById('infija').value = '';
+    document.getElementById('polaca').value = '';
+    document.getElementById('resultadoInfija').innerText = '';
+    document.getElementById('resultadoInfijaResuelto').innerText = '';
+    document.getElementById('resultadoPolaca').innerText = '';
+    document.getElementById('resultadoPolacaResuelto').innerText = '';
 }

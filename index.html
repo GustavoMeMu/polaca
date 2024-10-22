@@ -5,26 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Conversor de Notación</title>
-
 </head>
 <body>
     <div class="container">
         <h1>Conversor de Notación</h1>
-        <h1><P> La forma de colocar la expresión es con espacios entre cada termino </P></h1>
-        <h1>Ejemplo 2 * 2 o * 2 2</h1>
+        <p>La forma de colocar la expresión es con espacios entre cada término</p>
+        <p>Ejemplo: 2 * 2 o * 2 2</p>
+
         <div>
-            <h2>Notación Infija a Polaca</h2>
+            <h2>Notación Normal a Polaca</h2>
             <input type="text" id="infija" placeholder="Ingresa expresión infija">
             <button onclick="convertirInfijaAPolaca()">Convertir</button>
             <p id="resultadoInfija"></p>
+            <p id="resultadoInfijaResuelto"></p>
         </div>
+
         <div>
-            <h2>Notación Polaca a Infija</h2>
+            <h2>Notación Polaca a Normal</h2>
             <input type="text" id="polaca" placeholder="Ingresa expresión polaca">
             <button onclick="convertirPolacaAInfija()">Convertir</button>
             <p id="resultadoPolaca"></p>
+            <p id="resultadoPolacaResuelto"></p>
+        </div>
+        <div>
+            <button onclick="limpiarFormulario()">Limpiar Formulario</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
